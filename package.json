@@ -2,9 +2,11 @@
   "name": "triplannia-front",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --open",
+    "build": "ng build --prod",
+    "deploy": "ng build --prod && firebase deploy -P dev",
+    "firebase": "firebase deploy -P dev",
+    "firebaseprod": "firebase deploy -P prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
