@@ -1,0 +1,32 @@
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+  <h2 mat-dialog-title>{{ 'Login' | translate }}</h2>
+  <mat-dialog-content>
+    <mat-form-field>
+      <input matInput formControlName="email" placeholder="{{ 'Email' | translate }}" type="email">
+      <mat-hint>{{ 'Your email as user' | translate }}</mat-hint>
+      <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
+        {{ 'Please enter a valid email address' | translate }}
+      </mat-error>
+      <mat-error *ngIf="form.get('email').hasError('required')">
+        {{ 'Email is required' | translate }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="password" placeholder="{{ 'Password' | translate }}" type="password">
+      <mat-hint>{{ 'I hope its a difficult password! ;)' | translate }}</mat-hint>
+      <mat-error *ngIf="form.get('password').hasError('required')">
+        {{ 'Password is required' | translate }}
+      </mat-error>
+      <mat-error *ngIf="form.get('password').hasError('minlength')">
+        {{ 'Password must be 6 characters minimum' | translate }}
+      </mat-error>
+    </mat-form-field>
+    <div class="float-right">
+      <label><a href="javascript:" (click)="resetPassword(form)">Forgotten password?</a></label>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions class="right">
+    <button mat-button type="button" mat-dialog-close>{{ 'Cancel' | translate }}</button>
+    <button mat-stroked-button color="primary" type="submit">{{ 'Login' | translate }}</button>
+  </mat-dialog-actions>
+</form>

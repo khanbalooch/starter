@@ -1,0 +1,46 @@
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+  <h2 mat-dialog-title>{{ 'Sign Up' | translate }}</h2>
+  <mat-dialog-content>
+    <mat-form-field>
+      <input matInput formControlName="username" placeholder="{{ 'Username' | translate }}" appForbiddenName>
+      <mat-hint>{{ 'Give us your username without spaces' | translate }}</mat-hint>
+      <mat-error *ngIf="form.get('username').hasError('required')">
+        {{ 'Please enter your username' | translate }}
+      </mat-error>
+      <mat-error *ngIf="form.get('username').hasError('forbiddenName')">
+        {{ 'Username cant contain spaces' | translate }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="name" placeholder="{{ 'Your name' | translate }}">
+      <mat-hint>{{ 'It should be your real name' | translate }}</mat-hint>
+      <mat-error *ngIf="form.get('name').hasError('required')">
+        {{ 'Please enter your name' | translate }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="email" placeholder="{{ 'Email' | translate }}" type="email">
+      <mat-hint>{{ 'Your email as user' | translate }}</mat-hint>
+      <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
+        {{ 'Please enter a valid email address' | translate }}
+      </mat-error>
+      <mat-error *ngIf="form.get('email').hasError('required')">
+        {{ 'Email is required' | translate }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="password" placeholder="{{ 'Password' | translate }}" type="password">
+      <mat-hint>{{ 'I hope its a difficult password! ;)' | translate }}</mat-hint>
+      <mat-error *ngIf="form.get('password').hasError('required')">
+        {{ 'Password is required' | translate }}
+      </mat-error>
+      <mat-error *ngIf="form.get('password').hasError('minlength')">
+        {{ 'Password must be 6 characters minimum' | translate }}
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions class="right">
+    <button mat-button type="button" mat-dialog-close>{{ 'Cancel' | translate }}</button>
+    <button mat-stroked-button color="primary" type="submit">{{ 'Sign Up' | translate }}</button>
+  </mat-dialog-actions>
+</form>
