@@ -1,0 +1,172 @@
+<div class="row">
+  <div class="col col-xl-8 order-xl-2 col-lg-8 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
+    <div class="ui-block">
+      <div class="ui-block-title">
+        <h6 class="title">{{ 'aboutMe' | translate }}</h6>
+      </div>
+      <div class="ui-block-content">
+        <div class="row">
+          <div class="col col-12">
+
+            <!-- W-Personal-Info -->
+
+            <ul class="widget w-personal-info item-block">
+              <li *ngIf="model.aboutMe !== '' && model.aboutMe !== null">
+                <span class="text">{{ model.aboutMe }}</span>
+              </li>
+              <li *ngIf="model.birthPlace !== '' && model.birthPlace !== null">
+                <span class="title">{{ 'Where are you from?' | translate }}:</span>
+                <span class="text">{{ model.birthPlace }}</span>
+              </li>
+              <li *ngIf="model.websites !== '' && model.websites !== null">
+                <span class="title">{{ 'website' | translate }}:</span>
+                <a href="http://{{ model.websites }}" class="text" target="_blank">{{ model.websites }}</a>
+              </li>
+              <li *ngIf="model.facebook !== '' && model.facebook !== null">
+                <span class="title">Facebook:</span>
+                <a href="http://{{ model.facebook }}" class="text" target="_blank">{{ model.facebook }}</a>
+              </li>
+              <li *ngIf="model.linkedin !== '' && model.linkedin !== null">
+                <span class="title">LinkedIn:</span>
+                <a href="http://{{ model.linkedin }}" class="text" target="_blank">{{ model.linkedin }}</a>
+              </li>
+            </ul>
+
+            <!-- ... end W-Personal-Info -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui-block">
+      <div class="ui-block-title">
+        <h6 class="title">{{ 'Projects and Interests' | translate }}</h6>
+      </div>
+      <div class="ui-block-content">
+        <div class="row">
+          <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+
+            <!-- W-Personal-Info -->
+
+            <ul class="widget w-personal-info item-block">
+              <li *ngIf="model.professionalExperience !== '' && model.professionalExperience !== null">
+                <span class="title">{{ 'professionalExperience' | translate }}:</span>
+                <span class="text" *ngIf="model.professionalExperience">
+                  {{ model.professionalExperience }}
+                </span>
+              </li>
+              <li *ngIf="model.personalBackground !== '' && model.personalBackground !== null">
+                <span class="title">{{ 'personalBackground' | translate }}:</span>
+                <span class="text" *ngIf="model.personalBackground">
+                  {{ model.personalBackground }}
+                </span>
+              </li>
+              <li *ngIf="model.hobbies !== '' && model.hobbies !== null">
+                <span class="title">{{ 'hobbies' | translate }}:</span>
+                <span class="text" *ngIf="model.hobbies">
+                  {{ model.hobbies }}
+                </span>
+              </li>
+            </ul>
+
+            <!-- ... end W-Personal-Info -->
+          </div>
+          <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+
+            <!-- W-Personal-Info -->
+
+            <ul class="widget w-personal-info item-block">
+              <li *ngIf="model.books !== '' && model.books !== null">
+                <span class="title">{{ 'books' | translate }}:</span>
+                <span class="text" *ngIf="model.books">
+                  {{ model.books }}
+                </span>
+              </li>
+              <li *ngIf="model.movies !== '' && model.movies !== null">
+                <span class="title">{{ 'movies' | translate }}:</span>
+                <span class="text" *ngIf="model.movies">
+                  {{ model.movies }}
+                </span>
+              </li>
+              <li *ngIf="model.music !== '' && model.music !== null">
+                <span class="title">{{ 'music' | translate }}:</span>
+                <span class="text" *ngIf="model.music">
+                  {{ model.music }}
+                </span>
+              </li>
+              <li *ngIf="model.interests !== '' && model.interests !== null">
+                <span class="title">{{ 'interests' | translate }}:</span>
+                <span class="text" *ngIf="model.interests">
+                  {{ model.interests }}
+                </span>
+              </li>
+            </ul>
+
+            <!-- ... end W-Personal-Info -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col col-xl-4 order-xl-1 col-lg-4 order-lg-1 col-md-12 order-md-2 col-sm-12 col-12">
+    <div class="ui-block">
+      <div class="ui-block-title">
+        <h6 class="title">{{ 'Personal Info' | translate }}</h6>
+      </div>
+      <div class="ui-block-content">
+
+        <!-- W-Personal-Info -->
+
+        <ul class="widget w-personal-info">
+          <li>
+            <span class="title">{{ 'Username' | translate }}:</span>
+            <span class="text">{{ model.username }}</span>
+          </li>
+          <li *ngIf="model.name !== '' && model.name !== null">
+            <span class="title">{{ 'Real name' | translate }}:</span>
+            <span class="text">{{ model.name }}</span>
+          </li>
+          <li *ngIf="model.tagLine !== '' && model.tagLine !== null">
+            <span class="title">{{ 'Tagline' | translate }}:</span>
+            <span class="text">{{ model.tagLine }}</span>
+          </li>
+          <li *ngIf="model.birthday && model.birthday !== '0001-01-01T00:00:00'">
+            <span class="title">{{ 'birthday' | translate }}:</span>
+            <span class="text">{{ model.birthday }}</span>
+          </li>
+          <li *ngIf="model.city !== '' && model.city !== null">
+            <span class="title">{{ 'currentLocation' | translate }}:</span>
+            <span class="text">{{ model.city }}</span>
+          </li>
+          <li *ngIf="model.occupation !== '' && model.occupation !== null">
+            <span class="title">{{ 'occupation' | translate }}:</span>
+            <span class="text">{{ model.occupation }}</span>
+          </li>
+          <li>
+            <span class="title">{{ 'joined' | translate }}:</span>
+            <span class="text">{{ model.dateStamp }}</span>
+          </li>
+          <li *ngIf="model.genderStr !== ''">
+            <span class="title">{{ 'gender' | translate }}:</span>
+            <span class="text">{{ model.genderStr }}</span>
+          </li>
+          <li *ngIf="model.statusStr !== ''">
+            <span class="title">{{ 'status' | translate }}:</span>
+            <span class="text">{{ model.statusStr }}</span>
+          </li>
+          <li *ngIf="model.emailVisible">
+            <span class="title">{{ 'Email' | translate }}:</span>
+            <a href="mailto:{{ model.email }}" class="text">{{ model.email }}</a>
+          </li>
+          <li *ngIf="model.phoneNumber !== '' && model.phoneNumber !== null">
+            <span class="title">{{ 'phoneNumber' | translate }}:</span>
+            <span class="text">{{ model.phoneNumber }}</span>
+          </li>
+        </ul>
+
+        <!-- ... end W-Personal-Info -->
+
+      </div>
+    </div>
+  </div>
+</div>

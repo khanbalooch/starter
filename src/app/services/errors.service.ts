@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-// import { Router, NavigationError } from '@angular/router';
+import { Router, NavigationError } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as StackTraceParser from 'error-stack-parser';
 import { ApiUsersService } from './api-users.service';
@@ -11,23 +11,21 @@ export class ErrorsService {
 
   constructor(
     private injector: Injector,
-    private apiUsers: ApiUsersService
-    // private router: Router
+    private apiUsers: ApiUsersService,
+    private router: Router
   ) {
-    // // Listen to the navigation errors
-    // this.router
-    //   .events
-    //   .subscribe((event: Event) => {
-    //     // Redirect to the ErrorComponent
-    //     if (event instanceof NavigationError) {
-    //       if (!navigator.onLine) { return; }
-    //       // Redirect to the ErrorComponent
-    //       this.log(event.error)
-    //         .subscribe((errorWithContext) => {
-    //           this.router.navigate(['/error'], { queryParams: errorWithContext });
-    //         });
-    //     }
-    //   });
+    // Listen to the navigation errors
+    this.router.events.subscribe((event: any) => {
+      // Redirect to the ErrorComponent
+      if (event instanceof NavigationError) {
+        if (!navigator.onLine) { return; }
+        // Redirect to the ErrorComponent
+        this.log(event.error)
+          .subscribe((errorWithContext) => {
+            this.router.navigate(['/error'], { queryParams: errorWithContext });
+          });
+      }
+    });
   }
 
   logout() {
@@ -49,7 +47,7 @@ export class ErrorsService {
     });
   }
 
-  addContextInfo(error) {
+  private addContextInfo(error) {
     const name = error.name || null;
     const time = new Date().getTime();
     const location = this.injector.get(LocationStrategy);

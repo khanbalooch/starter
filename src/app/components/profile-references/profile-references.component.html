@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col col-12">
+    <div class="ui-block">
+      <div class="ui-block-title">
+        <h6 class="title">{{ 'References' | translate }}
+          <a href="javascript:" (click)="referenceDialog()" class="btn btn-control bg-blue" *ngIf="!referenced && !myProfile">
+            <i class="fas fa-user-plus"></i>
+          </a>
+        </h6>
+      </div>
+      <div class="ui-block-content">
+        <div class="row">
+          <div class="col col-12">
+            <ul class="widget w-personal-info item-block">
+              <li *ngIf="references?.length === 0">
+                {{ 'You have not received any references so far' | translate }}
+              </li>
+              <li *ngFor="let ref of references">
+                <span class="text">"{{ref.text}}" - <a routerLink="/profile/{{ref.user.username}}">{{ref.user.name}}</a></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
