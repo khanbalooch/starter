@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { MatSnackBar, MatDialogRef, MatDialog } from '@angular/material';
+import { MatDialogRef, MatDialog } from '@angular/material';
 
 import { ApiUsersService } from 'src/app/services/api-users.service';
 import { LoginComponent } from '../dialogs/login/login.component';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,14 +23,11 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private snackBar: MatSnackBar,
     private afAuth: AngularFireAuth,
-    private translate: TranslateService,
     private apiUsers: ApiUsersService,
-    private router: Router
-  ) {
-    this.translate.get('close').subscribe((res: string) => this.close = res);
-  }
+    private router: Router,
+    private n: NotificationService
+  ) { }
 
   ngOnInit() {
     this.afAuth.authState.subscribe(auth => {
@@ -55,7 +52,7 @@ export class NavbarComponent implements OnInit {
         this.isSuperAdmin = role === 'SuperAdmin';
         this.isLoggedIn = true;
       }
-    }, this.errorHandlerToken);
+    });
   }
 
   openLoginDialog() {
@@ -67,9 +64,7 @@ export class NavbarComponent implements OnInit {
     });
     this.loginDialogRef.afterClosed().subscribe(result => {
       if (result.email && result.password) {
-        let text;
-        this.translate.get('Loading...').subscribe((res: string) => text = res);
-        this.snackBar.open(text, this.close, { duration: 5000 });
+        this.n.notifyTrans('Loading...');
 
         this.afAuth.auth.signInWithEmailAndPassword(result.email, result.password).then((userFB: any) => {
           result.token = userFB.user.uid;
@@ -78,14 +73,12 @@ export class NavbarComponent implements OnInit {
 
             localStorage.setItem('tokenBE', authRes.token);
             this.readUserData(this.apiUsers.getUId());
-            let logged;
-            this.translate.get('Logged in').subscribe((res: string) => logged = res);
-            this.snackBar.open(logged, this.close, { duration: 5000 });
+            this.n.notifyTrans('Logged in');
             this.router.navigate(['/']);
 
-          }, this.errorHandlerToken.bind(this));
+          });
 
-        }).catch(this.errorHandlerToken.bind(this));
+        });
       }
     });
   }
@@ -103,18 +96,5 @@ export class NavbarComponent implements OnInit {
     this.isSuperAdmin = false;
     this.model = null;
     this.apiUsers.updateModel(this.model);
-  }
-
-  errorHandler(err) {
-    debugger
-    this.snackBar.open(err.message || err.statusText || err.json().message, this.close, { duration: 5000 });
-    console.error(err);
-  }
-
-  errorHandlerToken(err) {
-    debugger
-    this.apiUsers.logout(() => {
-      this.errorHandler(err);
-    });
   }
 }

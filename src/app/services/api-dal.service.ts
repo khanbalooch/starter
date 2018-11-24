@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Response } from '@angular/http';
+import { Headers } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';

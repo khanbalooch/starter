@@ -87,9 +87,7 @@ export class ApiUsersService extends ApiDalService<User> {
 
   logout(func) {
     this.deleteToken();
-    this.afAuth.auth.signOut()
-      .then(func)
-      .catch(err => console.error(err));
+    this.afAuth.auth.signOut().then(func);
   }
 
   deleteToken() {

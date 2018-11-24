@@ -1,13 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
+import { ErrorsHandler } from './errors-handler';
+import { ServerErrorsInterceptor } from './server-errors.interceptor';
 
-import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS, MatInputModule, MatDialogModule, MatButtonModule, MatSnackBarModule }
-  from '@angular/material';
+import {
+  MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS, MatInputModule, MatDialogModule, MatButtonModule, MatSnackBarModule
+} from '@angular/material';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core'; // TranslateCompiler
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -46,6 +49,9 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AuthAdminGuardService } from './services/auth-admin-guard.service';
 import { ApiUsersService } from './services/api-users.service';
 import { ApiPicturesService } from './services/api-pictures.service';
+import { ErrorsComponent } from './components/errors/errors.component';
+import { NotificationService } from './services/notification.service';
+import { ErrorsService } from './services/errors.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -73,7 +79,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SettingsComponent,
     VerifyEmailComponent,
     FooterComponent,
-    ForbiddenNameValidatorDirective
+    ForbiddenNameValidatorDirective,
+    ErrorsComponent
   ],
   imports: [
     BrowserModule,
@@ -111,9 +118,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthAdminGuardService,
     ApiUsersService,
     ApiPicturesService,
+    NotificationService,
+    ErrorsService,
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
-    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+    { provide: ErrorHandler, useClass: ErrorsHandler },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: ServerErrorsInterceptor, multi: true
+    }
   ],
   bootstrap: [AppComponent],
   entryComponents: [
