@@ -30,7 +30,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CreateComponent } from './components/dialogs/create/create.component';
 import { FeedbackComponent } from './components/dialogs/feedback/feedback.component';
 import { LoginComponent } from './components/dialogs/login/login.component';
@@ -65,7 +64,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     AboutUsComponent,
     ChangePasswordComponent,
     ContactUsComponent,
-    DashboardComponent,
     CreateComponent,
     FeedbackComponent,
     LoginComponent,

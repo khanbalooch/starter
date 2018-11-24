@@ -5,8 +5,8 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { forkJoin, Subscription } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
-import { NotificationService } from 'src/app/services/notification.service';
 
+import { NotificationService } from 'src/app/services/notification.service';
 import { User } from 'src/app/models/user';
 import { ApiUsersService } from 'src/app/services/api-users.service';
 import { CreateComponent } from '../dialogs/create/create.component';

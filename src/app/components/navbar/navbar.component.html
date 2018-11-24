@@ -16,7 +16,7 @@
     <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
     <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
     <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
+    <a class="py-2 d-none d-md-inline-block" *ngIf="isLoggedIn" routerLink="/dashboard">Dashboard</a>
     <a class="py-2 d-none d-md-inline-block" href="javascript:" (click)="openLoginDialog()" *ngIf="!isLoggedIn">
       {{ 'Login' | translate }}</a>
     <a class="py-2 d-none d-md-inline-block" href="javascript:" (click)="loginOut()" *ngIf="isLoggedIn">{{ 'Logout' |

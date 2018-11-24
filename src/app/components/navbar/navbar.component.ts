@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit {
             localStorage.setItem('tokenBE', authRes.token);
             this.readUserData(this.apiUsers.getUId());
             this.n.notifyTrans('Logged in');
-            this.router.navigate(['/']);
+            this.router.navigate(['/dashboard']);
 
           });
 
