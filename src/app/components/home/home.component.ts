@@ -32,7 +32,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.subscription = this.apiUsers.model$.subscribe((user: User) => this.model = user);
+    this.subscription = this.apiUsers.model$.subscribe((user: User) => {
+      this.model = user;
+      this.isLoggedIn = user ? true : false;
+    });
     this.title.setTitle(environment.siteName);
   }
 
