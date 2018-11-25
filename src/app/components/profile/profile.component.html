@@ -1,10 +1,10 @@
 <div *ngIf="model;else noModel">
-  <app-profile-header [model]="model" [isAuthenticated]="isAuthenticated"></app-profile-header>
+  <app-profile-header [model]="model" [isAuthenticated]="isAuthenticated" [itsMe]="itsMe"></app-profile-header>
   <app-profile-body [model]="model"></app-profile-body>
   <app-profile-references></app-profile-references>
 </div>
 <ng-template #noModel>
-  <div class="spinner_container">
+  <div class="spinner_container" *ngIf="modelFound">
     <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
       <circle class="circle" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
     </svg>

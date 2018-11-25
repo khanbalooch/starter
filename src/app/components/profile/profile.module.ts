@@ -7,9 +7,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ProfileComponent } from './profile.component';
 import { ProfileRoutingModule } from './profile.routing';
-import { ProfileHeaderComponent } from '../profile-header/profile-header.component';
-import { ProfileBodyComponent } from '../profile-body/profile-body.component';
-import { ProfileReferencesComponent } from '../profile-references/profile-references.component';
+import { ProfileHeaderComponent } from './profile-header/profile-header.component';
+import { ProfileBodyComponent } from './profile-body/profile-body.component';
+import { ProfileReferencesComponent } from './profile-references/profile-references.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json');

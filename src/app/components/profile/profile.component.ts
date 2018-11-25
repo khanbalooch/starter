@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -14,11 +15,14 @@ import { User } from 'src/app/models/user';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   private url: string;
   isAuthenticated: boolean;
+  itsMe: boolean;
   model: User;
+  modelLogged: User;
   modelFound = true;
+  subscription: Subscription;
 
   constructor(
     private title: Title,
@@ -37,6 +41,13 @@ export class ProfileComponent implements OnInit {
       if (!params['username']) {
         this.router.navigate(['/']);
       }
+
+      this.subscription = this.apiUsers.model$.subscribe((user: User) => {
+        if (user) {
+          this.modelLogged = user;
+          this.itsMe = window.location.pathname.substring(9) === this.modelLogged.username;
+        }
+      });
 
       this.isAuthenticated = this.apiUsers.isAuthenticated();
       this.url = environment.storageUrl;
@@ -73,6 +84,10 @@ export class ProfileComponent implements OnInit {
       });
 
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

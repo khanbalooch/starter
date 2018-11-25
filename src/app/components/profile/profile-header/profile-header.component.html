@@ -13,11 +13,11 @@
   <div class="row" *ngIf="isAuthenticated && model">
     <div class="col col-12">
 
-      <a href="javascript:" (click)="messageDialog()">
-        <i class="far fa-comments"></i>
+      <a href="javascript:" (click)="messageDialog()" *ngIf="!itsMe">
+        Message
       </a>
-      <a href="javascript:" routerLink="/dashboard/settings">
-        <i class="fas fa-cogs"></i>
+      <a href="javascript:" routerLink="/dashboard/settings" *ngIf="itsMe">
+        Settings
       </a>
 
     </div>

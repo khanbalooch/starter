@@ -38,7 +38,6 @@ import { PictureUploadComponent } from './components/dialogs/picture-upload/pict
 import { FAQComponent } from './components/faq/faq.component';
 import { ImageCropperWrapComponent } from './components/image-cropper-wrap/image-cropper-wrap.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -71,7 +70,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     FAQComponent,
     ImageCropperWrapComponent,
     NotFoundComponent,
-    ProfileEditComponent,
     SettingsComponent,
     VerifyEmailComponent,
     FooterComponent,
@@ -120,9 +118,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
     { provide: ErrorHandler, useClass: ErrorsHandler },
-    {
-      provide: HTTP_INTERCEPTORS, useClass: ServerErrorsInterceptor, multi: true
-    }
+    { provide: HTTP_INTERCEPTORS, useClass: ServerErrorsInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
   entryComponents: [
