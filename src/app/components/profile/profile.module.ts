@@ -10,6 +10,7 @@ import { ProfileRoutingModule } from './profile.routing';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { ProfileBodyComponent } from './profile-body/profile-body.component';
 import { ProfileReferencesComponent } from './profile-references/profile-references.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json');
@@ -35,7 +36,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfileComponent,
     ProfileHeaderComponent,
     ProfileBodyComponent,
-    ProfileReferencesComponent
+    ProfileReferencesComponent,
+    ProfileEditComponent
   ]
 })
 export class ProfileModule { }

@@ -38,7 +38,6 @@ import { PictureUploadComponent } from './components/dialogs/picture-upload/pict
 import { FAQComponent } from './components/faq/faq.component';
 import { ImageCropperWrapComponent } from './components/image-cropper-wrap/image-cropper-wrap.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ForbiddenNameValidatorDirective } from './components/dialogs/create/forbidden-name.directive';
@@ -70,7 +69,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     FAQComponent,
     ImageCropperWrapComponent,
     NotFoundComponent,
-    SettingsComponent,
     VerifyEmailComponent,
     FooterComponent,
     ForbiddenNameValidatorDirective,
