@@ -15,8 +15,8 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  isAuthenticated: boolean;
   private url: string;
+  isAuthenticated: boolean;
   model: User;
   modelFound = true;
 
