@@ -4,7 +4,7 @@
     <div class="col col-12">
 
       <div class="top-header-thumb">
-        <img src="{{ cover_pic }}" alt="{{ model?.username }}">
+        <img src="{{ model.picCover }}" alt="{{ model?.username }}">
       </div>
 
     </div>
@@ -26,7 +26,7 @@
   <div class="row">
     <div class="col col-12">
 
-      <img src="{{ profile_pic }}" alt="{{ model?.username }}">
+      <img src="{{ model.picProfile }}" alt="{{ model?.username }}">
       <span class="h4 author-name">{{ model?.name }}</span>
       <div class="country">{{ model?.city ? model?.city : planet_earth }}</div>
 

@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-references.component.scss']
 })
 export class ProfileReferencesComponent implements OnInit {
+  references: any;
+  referenced: any;
+  myProfile: any;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  referenceDialog() { }
 }

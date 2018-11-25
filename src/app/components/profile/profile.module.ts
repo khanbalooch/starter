@@ -12,7 +12,7 @@ import { ProfileBodyComponent } from '../profile-body/profile-body.component';
 import { ProfileReferencesComponent } from '../profile-references/profile-references.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, './i18n/', '.json');
 }
 
 @NgModule({

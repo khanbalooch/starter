@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -13,7 +13,7 @@ import { NotificationService } from 'src/app/services/notification.service';
   templateUrl: './profile-header.component.html',
   styleUrls: ['./profile-header.component.scss']
 })
-export class ProfileHeaderComponent implements OnInit {
+export class ProfileHeaderComponent {
   @Input() model: User;
   @Input() isAuthenticated: boolean;
   planet_earth: string;
@@ -28,9 +28,6 @@ export class ProfileHeaderComponent implements OnInit {
     private n: NotificationService
   ) {
     this.translate.get('planet_earth').subscribe((res: string) => this.planet_earth = res);
-  }
-
-  ngOnInit() {
   }
 
   messageDialog() {

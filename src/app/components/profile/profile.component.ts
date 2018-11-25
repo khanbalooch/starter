@@ -27,7 +27,10 @@ export class ProfileComponent implements OnInit {
     private translate: TranslateService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+    translate.setDefaultLang('en');
+    translate.use('en');
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
