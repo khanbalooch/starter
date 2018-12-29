@@ -40,7 +40,6 @@ export class ErrorsService {
     console.error(error);
     // Send error to server
     const errorToSend = this.addContextInfo(error);
-    debugger
     return new Observable((observer) => {
       observer.next(errorToSend);
       observer.complete();
@@ -54,7 +53,6 @@ export class ErrorsService {
     const url = location instanceof PathLocationStrategy ? location.path() : '';
     const status = error.status || null;
     const message = error.message || error.toString();
-    debugger
     try {
       const stack = error instanceof HttpErrorResponse ? null : StackTraceParser.parse(error);
       return { name, time, url, status, message, stack };

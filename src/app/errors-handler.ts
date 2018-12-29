@@ -6,7 +6,6 @@ import { NotificationService } from 'src/app/services/notification.service';
 
 @Injectable()
 export class ErrorsHandler implements ErrorHandler {
-
   constructor(
     private injector: Injector
   ) { }
@@ -38,7 +37,6 @@ export class ErrorsHandler implements ErrorHandler {
 
       // Handle Client Error (Angular Error, ReferenceError...)
       errors.log(error).subscribe(errorWithContextInfo => {
-        debugger
         router.navigate(['/error'], { queryParams: errorWithContextInfo });
       });
 
