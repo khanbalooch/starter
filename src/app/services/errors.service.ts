@@ -20,10 +20,9 @@ export class ErrorsService {
       if (event instanceof NavigationError) {
         if (!navigator.onLine) { return; }
         // Redirect to the ErrorComponent
-        this.log(event.error)
-          .subscribe((errorWithContext) => {
-            this.router.navigate(['/error'], { queryParams: errorWithContext });
-          });
+        this.log(event.error).subscribe((errorWithContext) => {
+          this.router.navigate(['/error'], { queryParams: errorWithContext });
+        });
       }
     });
   }
@@ -41,21 +40,26 @@ export class ErrorsService {
     console.error(error);
     // Send error to server
     const errorToSend = this.addContextInfo(error);
+    debugger
     return new Observable((observer) => {
       observer.next(errorToSend);
       observer.complete();
     });
   }
 
-  private addContextInfo(error) {
+  private addContextInfo(error: any) {
     const name = error.name || null;
     const time = new Date().getTime();
     const location = this.injector.get(LocationStrategy);
     const url = location instanceof PathLocationStrategy ? location.path() : '';
     const status = error.status || null;
     const message = error.message || error.toString();
-    const stack = error instanceof HttpErrorResponse ? null : StackTraceParser.parse(error);
-    const errorToSend = { name, time, url, status, message, stack };
-    return errorToSend;
+    debugger
+    try {
+      const stack = error instanceof HttpErrorResponse ? null : StackTraceParser.parse(error);
+      return { name, time, url, status, message, stack };
+    } catch (error) {
+      return { name, time, url, status, message, stack: null };
+    }
   }
 }

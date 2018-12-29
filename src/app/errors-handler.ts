@@ -11,7 +11,7 @@ export class ErrorsHandler implements ErrorHandler {
     private injector: Injector
   ) { }
 
-  handleError(error: | HttpErrorResponse) {
+  handleError(error: Error | HttpErrorResponse) {
 
     const router = this.injector.get(Router);
     const n = this.injector.get(NotificationService);
@@ -38,9 +38,13 @@ export class ErrorsHandler implements ErrorHandler {
 
       // Handle Client Error (Angular Error, ReferenceError...)
       errors.log(error).subscribe(errorWithContextInfo => {
+        debugger
         router.navigate(['/error'], { queryParams: errorWithContextInfo });
       });
 
     }
+
+    // Log the error anyway
+    console.error('ERROR ANYWAY LOGGED: ', error);
   }
 }
