@@ -14,7 +14,7 @@ export class LoginComponent {
   close: string;
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
   constructor(
@@ -23,7 +23,7 @@ export class LoginComponent {
     private n: NotificationService
   ) { }
 
-  submit(form) {
+  submit(form: any) {
     if (form.valid) {
       this.dialogRef.close(form.value);
     } else {
@@ -31,7 +31,7 @@ export class LoginComponent {
     }
   }
 
-  resetPassword(form) {
+  resetPassword(form: any) {
     if (form.value.email) {
       this.afAuth.auth.sendPasswordResetEmail(form.value.email).then((result: any) => {
         if (result === undefined) {

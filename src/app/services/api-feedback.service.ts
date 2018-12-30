@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
 import { ApiDalService } from './api-dal.service';
-import { Feedback } from '../models/feedback';
+import { Feedback } from 'src/app/models/feedback';
 
 @Injectable({
   providedIn: 'root'

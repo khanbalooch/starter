@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialogRef, MatDialog } from '@angular/material';
 
 import { ApiUsersService } from 'src/app/services/api-users.service';
-import { LoginComponent } from '../dialogs/login/login.component';
+import { LoginComponent } from 'src/app/components/dialogs/login/login.component';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({

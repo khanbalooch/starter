@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
 
-import { environment } from '../../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 import { ApiUsersService } from 'src/app/services/api-users.service';
 import { User } from 'src/app/models/user';

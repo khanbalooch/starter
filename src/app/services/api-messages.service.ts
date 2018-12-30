@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ApiDalService } from './api-dal.service';
-import { Message } from '../models/message';
+import { Message } from 'src/app/models/message';
 
 @Injectable({
   providedIn: 'root'

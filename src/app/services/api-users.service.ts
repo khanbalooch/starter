@@ -7,7 +7,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ApiDalService } from './api-dal.service';
-import { User } from '../models/user';
+import { User } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root'

@@ -41,8 +41,5 @@ export class ErrorsHandler implements ErrorHandler {
       });
 
     }
-
-    // Log the error anyway
-    console.error('ERROR ANYWAY LOGGED: ', error);
   }
 }

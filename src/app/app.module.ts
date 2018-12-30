@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
-import { environment } from '../environments/environment';
+import { environment } from 'src/environments/environment';
 import { ErrorsHandler } from './errors-handler';
-import { ServerErrorsInterceptor } from './server-errors.interceptor';
+import { HttpClientInterceptor } from './httpclient.interceptor';
 
 import {
   MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS, MatInputModule, MatDialogModule, MatButtonModule, MatSnackBarModule
@@ -116,7 +116,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
     { provide: ErrorHandler, useClass: ErrorsHandler },
-    { provide: HTTP_INTERCEPTORS, useClass: ServerErrorsInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
   entryComponents: [

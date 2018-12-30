@@ -1,18 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Headers } from '@angular/http';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
-import { environment } from '../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export abstract class ApiDalService<T> {
-  private contentType = { 'Content-type': 'application/json' };
-  private headers = new Headers(this.contentType);
-  private options = { headers: new HttpHeaders(this.contentType) };
   private url: string;
 
   constructor(
@@ -28,43 +24,24 @@ export abstract class ApiDalService<T> {
 
   postJson(path: string, object: T): Observable<T> {
     const body = JSON.stringify(object);
-    this.authenticationToken();
-
-    return this.http.post<T>(this.url + path, body, this.options);
+    return this.http.post<T>(this.url + path, body);
   }
 
   post(path: string, object: T): Observable<T> {
     const body = JSON.stringify(object);
-
-    return this.http.post<T>(this.url + path, body, this.options);
+    return this.http.post<T>(this.url + path, body);
   }
 
   put(path: string, object: T): Observable<T> {
     const body = JSON.stringify(object);
-    this.authenticationToken();
-
-    return this.http.put<T>(this.url + path, body, this.options);
+    return this.http.put<T>(this.url + path, body);
   }
 
   delete(path: string, id: string): Observable<number> {
-    this.authenticationToken();
-
-    return this.http.delete<number>(`${this.url}${path}/${id}`, this.options);
+    return this.http.delete<number>(`${this.url}${path}/${id}`);
   }
 
   getAll(path: string): Observable<T[]> {
-    this.authenticationToken();
-
-    return this.http.get<T[]>(this.url + path, this.options);
-  }
-
-  private authenticationToken() {
-    const token = localStorage.getItem('tokenBE');
-    if (this.headers.has('Authorization')) {
-      this.headers.delete('Authorization');
-    }
-    if (token) {
-      this.headers.append('Authorization', `Bearer ${token}`);
-    }
+    return this.http.get<T[]>(this.url + path);
   }
 }

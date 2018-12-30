@@ -4,12 +4,12 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { forkJoin, Subscription } from 'rxjs';
 
-import { environment } from '../../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 import { NotificationService } from 'src/app/services/notification.service';
 import { User } from 'src/app/models/user';
 import { ApiUsersService } from 'src/app/services/api-users.service';
-import { CreateComponent } from '../dialogs/create/create.component';
+import { CreateComponent } from 'src/app/components/dialogs/create/create.component';
 
 @Component({
   selector: 'app-home',

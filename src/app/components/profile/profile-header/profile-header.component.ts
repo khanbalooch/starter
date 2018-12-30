@@ -3,7 +3,7 @@ import { MatDialogRef, MatDialog } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 
 import { User } from 'src/app/models/user';
-import { MessageComponent } from '../../dialogs/message/message.component';
+import { MessageComponent } from 'src/app/components/dialogs/message/message.component';
 import { Message } from 'src/app/models/message';
 import { ApiMessagesService } from 'src/app/services/api-messages.service';
 import { NotificationService } from 'src/app/services/notification.service';

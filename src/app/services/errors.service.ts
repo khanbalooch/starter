@@ -1,17 +1,22 @@
 import { Injectable, Injector } from '@angular/core';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, NavigationError } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as StackTraceParser from 'error-stack-parser';
+
+import { environment } from 'src/environments/environment';
+
 import { ApiUsersService } from './api-users.service';
 
 @Injectable()
 export class ErrorsService {
+  private url: string;
 
   constructor(
     private injector: Injector,
     private apiUsers: ApiUsersService,
+    private http: HttpClient,
     private router: Router
   ) {
     // Listen to the navigation errors
@@ -25,6 +30,7 @@ export class ErrorsService {
         });
       }
     });
+    this.url = environment.apiUrl;
   }
 
   logout() {
@@ -35,15 +41,12 @@ export class ErrorsService {
     });
   }
 
-  log(error) {
+  log(error: any) {
     // Log the error to the console
     console.error(error);
     // Send error to server
     const errorToSend = this.addContextInfo(error);
-    return new Observable((observer) => {
-      observer.next(errorToSend);
-      observer.complete();
-    });
+    return this.http.post(this.url + 'errorsclient', errorToSend);
   }
 
   private addContextInfo(error: any) {
