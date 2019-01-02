@@ -3,7 +3,6 @@ export class User {
   username: string;
   name: string;
   email: string;
-  emailVisible: boolean;
   token: string;
   tagLine: string;
   city: string;
@@ -12,7 +11,6 @@ export class User {
   picProfile: string;
   expiration: string; // for the back end token expiration
   aboutMe: string;
-  nationality: string;
   howToContactMe: string;
   dateStamp: string;
 }
