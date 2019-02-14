@@ -10,7 +10,7 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard.routing';
 import { SettingsComponent } from './settings/settings.component';
 import { AddNewPlaceComponent } from '../add-new-place/add-new-place.component';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json');
@@ -21,6 +21,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommonModule,
     DashboardRoutingModule,
     MatFormFieldModule,
+    MatButtonModule,
     MatInputModule,
     TranslateModule.forRoot({
       loader: {

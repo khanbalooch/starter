@@ -10,7 +10,7 @@ export class AddNewPlaceComponent implements OnInit {
   private map: any ;
   private name: any;
   private description: any;
-  @Input() lat = 51.678418;
+  private lat = 51.678418;
   private lng = 7.809007;
 
   constructor() { }

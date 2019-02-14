@@ -1,11 +1,33 @@
-.example-container {
+.container {
   display: flex;
   flex-direction: column;
 }
-
-.example-container > * {
+.place-container {
+  border-radius: 5px;
+  background-color: lightgrey;
+  padding-top: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-top:2%;
+  width: 70%;
+}
+.container > * {
   width: 100%;
+}
+button {
+  background-color: blueviolet;
+  color: white;
+  float: right;
+  margin: 2%;
+}
+.latlng {
+  background-color: antiquewhite;
+}
+.map {
+  border-radius: 5%;
 }
 agm-map {
   height: 300px;
+  padding-bottom: 5%;
+
 }
