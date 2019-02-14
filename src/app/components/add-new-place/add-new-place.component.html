@@ -1,0 +1,23 @@
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Place Name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Description">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input [value]='lat' matInput placeholder="Latitude">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input [value]='lng' matInput placeholder="Longitude">
+  </mat-form-field>
+
+  
+  <agm-map (mapReady)='onMapReady($event)' (mapClick)="positionChanged($event)" [latitude]="51.678418" [longitude]="7.809007">
+    <agm-marker [latitude]="lat" [longitude]="lng" [label]="'P'">
+    </agm-marker>
+  </agm-map>
+</div>

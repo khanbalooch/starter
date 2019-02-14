@@ -9,7 +9,7 @@ import { ErrorsHandler } from './errors-handler';
 import { HttpClientInterceptor } from './httpclient.interceptor';
 
 import {
-  MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS, MatInputModule, MatDialogModule, MatButtonModule, MatSnackBarModule
+  MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS, MatInputModule, MatDialogModule, MatButtonModule, MatSnackBarModule, MatFormFieldModule
 } from '@angular/material';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core'; // TranslateCompiler
@@ -48,6 +48,7 @@ import { ApiPicturesService } from './services/api-pictures.service';
 import { ErrorsComponent } from './components/errors/errors.component';
 import { NotificationService } from './services/notification.service';
 import { ErrorsService } from './services/errors.service';
+import { AddNewPlaceComponent } from './components/add-new-place/add-new-place.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json');
