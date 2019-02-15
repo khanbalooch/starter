@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 
 import { ApiUsersService } from './api-users.service';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate {
   constructor(
-    private auth: ApiUsersService,
+    private auth: AuthenticationService,
     private router: Router
   ) { }
 
@@ -16,9 +17,7 @@ export class AuthGuardService implements CanActivate {
     if (this.auth.isAuthenticated()) {
       return true;
     }
-    this.auth.logout(() => {
-      localStorage.removeItem('tokenBE');
-      this.router.navigate(['/']);
-    });
+
+    this.auth.logout();
   }
 }

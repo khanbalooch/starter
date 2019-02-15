@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ApiDalService } from './api-dal.service';
 import { User } from 'src/app/models/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -56,11 +57,8 @@ export class ApiUsersService extends ApiDalService<User> {
   }
 
   isAuthenticated(): boolean {
-    const token = localStorage.getItem('tokenBE');
-    if (token && !this.jwtHelper.isTokenExpired(token)) {
-      return true;
-    }
-    return false;
+    const token = localStorage.getItem(environment.tokenKey);
+    return token === 'trppliania';
   }
 
   getUId(): string {

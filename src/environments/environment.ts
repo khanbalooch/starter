@@ -14,7 +14,8 @@ export const environment = {
   },
   apiUrl: 'http://localhost:55555/api/',
   storageUrl: 'http://127.0.0.1:10000/devstoreaccount1/tppictures/',
-  siteName: 'Triplannia'
+  siteName: 'Triplannia',
+  tokenKey: 'TPtoken'
 };
 
 /*

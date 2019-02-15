@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { MatDialogRef, MatDialog } from '@angular/material';
 
 import { ApiUsersService } from 'src/app/services/api-users.service';
 import { LoginComponent } from 'src/app/components/dialogs/login/login.component';
 import { NotificationService } from 'src/app/services/notification.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,14 +23,13 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private afAuth: AngularFireAuth,
-    private apiUsers: ApiUsersService,
+    private auth: AuthenticationService,
     private router: Router,
     private n: NotificationService
   ) { }
 
   ngOnInit() {
-    this.afAuth.authState.subscribe(auth => {
+    /*this.afAuth.authState.subscribe(auth => {
 
       if (auth !== null && this.apiUsers.isAuthenticated()) {
         this.readUserData(auth.uid);
@@ -39,23 +38,10 @@ export class NavbarComponent implements OnInit {
 
       this.setLoginOff();
       this.apiUsers.deleteToken();
-    });
+    });*/
   }
 
-  private readUserData(uid: string) {
-    this.apiUsers.read(uid).subscribe((user: User) => {
-      if (user) {
-        this.model = user;
-        this.apiUsers.updateModel(user);
-        const role = this.apiUsers.getRole();
-        this.isAdmin = role === 'Admin';
-        this.isSuperAdmin = role === 'SuperAdmin';
-        this.isLoggedIn = true;
-      }
-    });
-  }
-
-  openLoginDialog() {
+  async openLoginDialog() {
     if (this.dialog.openDialogs.length > 0) {
       return;
     }
@@ -64,33 +50,26 @@ export class NavbarComponent implements OnInit {
     });
     this.loginDialogRef.afterClosed().subscribe(result => {
 
-      localStorage.setItem('tokenBE', 'sdfbeuifw');
-      this.router.navigate(['/dashboard']);
-      /*if (result.email && result.password) {
+      if (result.email && result.password) {
         this.n.notifyTrans('Loading...');
 
-        this.afAuth.auth.signInWithEmailAndPassword(result.email, result.password).then((userFB: any) => {
-          result.token = userFB.user.uid;
-
-          this.apiUsers.auth(result).subscribe((authRes: any) => {
-
-            localStorage.setItem('tokenBE', authRes.token);
-            this.readUserData(this.apiUsers.getUId());
-            this.n.notifyTrans('Logged in');
-            this.router.navigate(['/dashboard']);
-
-          });
-
+      this.auth.login({
+          username: result.email,
+          password: result.password
         });
-      }*/
+        this.setLoginOn();
+
+        this.n.notifyTrans('Logged in');
+        this.router.navigate(['/dashboard']);
+
+      }
     });
   }
 
   loginOut() {
-    this.apiUsers.logout(() => {
-      this.setLoginOff();
-      this.router.navigate(['/']);
-    });
+    this.auth.logout();
+    this.setLoginOff();
+    this.router.navigate(['/']);
   }
 
   private setLoginOff() {
@@ -98,6 +77,10 @@ export class NavbarComponent implements OnInit {
     this.isAdmin = false;
     this.isSuperAdmin = false;
     this.model = null;
-    this.apiUsers.updateModel(this.model);
+  }
+  private setLoginOn() {
+    this.isLoggedIn = true;
+    this.isAdmin = true;
+    this.isSuperAdmin = true;
   }
 }
