@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'profile/:username', loadChildren: './components/profile/profile.module#ProfileModule' },
   { path: 'profile', redirectTo: '/', pathMatch: 'full' },
-  { path: 'dashboard', loadChildren: './components/dashboard/dashboard.module#DashboardModule' },
+  { path: 'dashboard', loadChildren: './components/dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuardService] },
   { path: 'error', component: ErrorsComponent },
   { path: '**', component: NotFoundComponent }
 ];
